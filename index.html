@@ -15,10 +15,9 @@
             font-family: 'Arial', sans-serif;
             line-height: 1.6;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 200vh; /* Make page scrollable */
+            min-height: 200vh; 
         }
 
-        /* Navigation Styles */
         .navbar {
             position: fixed;
             top: 0;
@@ -84,7 +83,6 @@
             color: #fff;
         }
 
-        /* Hover Effects */
         .nav-link:hover {
             background: linear-gradient(45deg, #667eea, #764ba2);
             color: #fff !important;
@@ -108,7 +106,6 @@
             width: 80%;
         }
 
-        /* Mobile Menu Toggle */
         .menu-toggle {
             display: none;
             flex-direction: column;
@@ -128,7 +125,6 @@
             background: #fff;
         }
 
-        /* Main Content */
         .main-content {
             margin-top: 80px;
             padding: 40px 20px;
@@ -174,7 +170,6 @@
             line-height: 1.8;
         }
 
-        /* Responsive Design */
         @media (max-width: 768px) {
             .menu-toggle {
                 display: flex;
@@ -221,7 +216,6 @@
             }
         }
 
-        /* Scroll Indicator */
         .scroll-indicator {
             position: fixed;
             top: 0;
@@ -234,7 +228,6 @@
     </style>
 </head>
 <body>
-    <!-- Scroll Progress Indicator -->
     <div class="scroll-indicator" id="scrollIndicator"></div>
 
     <!-- Navigation Menu -->
@@ -297,23 +290,19 @@
     </main>
 
     <script>
-        // Get DOM elements
         const navbar = document.getElementById('navbar');
         const navMenu = document.getElementById('navMenu');
         const menuToggle = document.getElementById('menuToggle');
         const scrollIndicator = document.getElementById('scrollIndicator');
         const navLinks = document.querySelectorAll('.nav-link');
 
-        // Scroll event listener for navbar transformation
         window.addEventListener('scroll', () => {
             const scrollTop = window.pageYOffset;
             const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
             const scrollProgress = (scrollTop / scrollHeight) * 100;
 
-            // Update scroll indicator
             scrollIndicator.style.width = scrollProgress + '%';
 
-            // Add/remove scrolled class based on scroll position
             if (scrollTop > 50) {
                 navbar.classList.add('scrolled');
             } else {
@@ -321,11 +310,9 @@
             }
         });
 
-        // Mobile menu toggle functionality
         menuToggle.addEventListener('click', () => {
             navMenu.classList.toggle('active');
             
-            // Animate hamburger menu
             const spans = menuToggle.querySelectorAll('span');
             if (navMenu.classList.contains('active')) {
                 spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
@@ -338,7 +325,6 @@
             }
         });
 
-        // Close mobile menu when clicking on nav links
         navLinks.forEach(link => {
             link.addEventListener('click', (e) => {
                 // Close mobile menu if open
@@ -350,13 +336,12 @@
                     spans[2].style.transform = 'none';
                 }
 
-                // Smooth scroll to section
                 e.preventDefault();
                 const targetId = link.getAttribute('href').substring(1);
                 const targetSection = document.getElementById(targetId);
                 
                 if (targetSection) {
-                    const offsetTop = targetSection.offsetTop - 80; // Account for fixed navbar height
+                    const offsetTop = targetSection.offsetTop - 80; 
                     window.scrollTo({
                         top: offsetTop,
                         behavior: 'smooth'
@@ -364,7 +349,6 @@
                 }
             });
 
-            // Add extra hover effects with JavaScript
             link.addEventListener('mouseenter', (e) => {
                 e.target.style.boxShadow = '0 8px 25px rgba(102, 126, 234, 0.6)';
             });
@@ -374,7 +358,6 @@
             });
         });
 
-        // Add active state based on scroll position
         window.addEventListener('scroll', () => {
             const sections = document.querySelectorAll('section[id]');
             const scrollPos = window.pageYOffset + 100;
@@ -394,13 +377,11 @@
             });
         });
 
-        // Add some interactive particles effect on scroll (optional enhancement)
         let ticking = false;
 
         function updateNavbar() {
             const scrollTop = window.pageYOffset;
             
-            // Add subtle transform to navbar based on scroll speed
             if (scrollTop > 100) {
                 navbar.style.transform = 'translateY(0)';
             }
@@ -415,9 +396,7 @@
             }
         });
 
-        // Initialize
         document.addEventListener('DOMContentLoaded', () => {
-            // Add loading animation
             navbar.style.transform = 'translateY(-100%)';
             setTimeout(() => {
                 navbar.style.transition = 'all 0.3s ease';
